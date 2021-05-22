@@ -1,0 +1,22 @@
+hadoop fs –mkdir /path/directory_name
+hadoop fs -ls /path
+hadoop fs -put <localsrc> <dest>
+hadoop fs -copyFromLocal <localsrc> <hdfs destination>
+hadoop fs -get <src> <localdest>
+hadoop fs -copyToLocal <hdfs source> <localdst>
+hadoop fs –cat /path_to_file_in_hdfs
+hadoop fs -mv <src> <dest>
+hadoop fs -cp <src> <dest>
+hadoop fs -moveFromLocal <localsrc> <dest>
+hadoop fs -moveToLocal <src> <localdest>
+hadoop fs -tail [-f] <file>
+hadoop fs –rm <path>
+hadoop fs –du –s /directory/filename
+hadoop fs -df [-h] <path>
+hadoop fs –touchz /directory/filename
+hadoop fs -text <src>
+hadoop fs -stat [format] <path>
+hadoop fs -appendToFile <localsrc> <dest>
+hadoop fs -checksum <src>
+hadoop fs -count [options] <path>
+hadoop fs -find <path> … <expression>
