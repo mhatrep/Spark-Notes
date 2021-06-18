@@ -1,3 +1,4 @@
+
 %sql
 CREATE OR REPLACE TABLE events (
   date DATE,
@@ -31,3 +32,5 @@ show create table events
 
 %sql
 ALTER TABLE events ADD COLUMNS  (nestedType.CC STRING  AFTER AA)
+
+Reference: https://docs.delta.io/latest/delta-batch.html
