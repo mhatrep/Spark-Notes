@@ -1,0 +1,33 @@
+%sql
+CREATE OR REPLACE TABLE events (
+  date DATE,
+  eventId STRING,
+  eventType STRING,
+  data STRING)
+USING DELTA
+
+
+%sql
+insert into events values (current_date,'AAA','TTT','X Y Z')
+
+%sql
+select * from events
+
+%sql
+ALTER TABLE events REPLACE COLUMNS (data STRING, eventType STRING,  eventId STRING, date DATE)
+
+
+%sql
+ALTER TABLE events REPLACE COLUMNS (id INTEGER, data STRING, eventType STRING,  eventId STRING, date DATE)
+
+%sql
+ALTER TABLE events ADD COLUMNS (name STRING AFTER DATA, zip int AFTER eventId, ssid INT FIRST)
+
+%sql
+ALTER TABLE events ADD COLUMNS (nestedType STRUCT<AA : STRING, BB : INT> AFTER name)
+
+%sql
+show create table events
+
+%sql
+ALTER TABLE events ADD COLUMNS  (nestedType.CC STRING  AFTER AA)
