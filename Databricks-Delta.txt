@@ -33,4 +33,15 @@ show create table events
 %sql
 ALTER TABLE events ADD COLUMNS  (nestedType.CC STRING  AFTER AA)
 
+%sql
+ALTER TABLE events change eventId eventId boolean
+(syntax only)
+
+%sql
+CREATE TABLE events_shallow_clone SHALLOW CLONE events
+
+%sql
+CREATE TABLE events_deep_clone  DEEP CLONE events
+
+
 Reference: https://docs.delta.io/latest/delta-batch.html
