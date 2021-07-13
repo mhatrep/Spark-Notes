@@ -5,7 +5,10 @@ Areas to optimize Hive utilization:
 3. Data Processing (Bucket Map Join and Parallel execution)
 
 
-
+Lock: Lock the hive tables from unintentional deletes. This can be achieved by enabling no_drop on hive tables.
+ALTER TABLE TableName enable no_drop;
+ALTER TABLE TableName disable no_drop;
+*Enabling this feature on production tables is a good practice
 
 https://kirankumarpothina.wordpress.com/2019/12/25/hive-tips-and-tricks/
 
