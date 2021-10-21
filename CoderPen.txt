@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+import org.junit.*;
+import org.junit.runner.*;
+
+public class Solution {
+
+  @Test
+  public void testReverse() {
+    Assert.assertTrue(reverse("Hello").equals("olleH"));
+  }
+
+  @Test
+  public void testReverseNull() {
+    Assert.assertTrue(reverse(null).equals(""));
+  }
+
+  @Test
+  public void testReverseFail() {
+    Assert.assertTrue(reverse("prashant_mhatre").equals("abc"));
+  }
+  
+  public static String reverse(String inputArray) {
+    if (inputArray == null) {
+      return "";
+    }
+    char[] array = inputArray.toCharArray();
+    final int halfLength = array.length / 2;
+    int index2;
+    char temp;
+    for (int index1 = 0; index1 < halfLength; index1++) {
+      index2 = array.length - 1 - index1;
+      temp = array[index1];
+      array[index1] = array[index2];
+      array[index2] = temp;
+    }
+    return String.valueOf(array);
+  }
+
+  public static void main(String args[]) {
+    System.out.println("Test reverse: " + reverse("Hello"));    
+    JUnitCore.main("Solution");
+  }
+}
