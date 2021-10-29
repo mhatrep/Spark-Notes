@@ -1,0 +1,11 @@
+Batch Processing Systems express jobs in terms of a Directed Acyclic Graph (DAG) of tasks (or stages). 
+Each task is partitioned (based on the input data) for parallel processing and includes producer stages and consumer stages which rely on the output of the producer stages. 
+The producer stages are executed on producer nodes and the consumer stages are executed on consumer nodes. 
+Intermediary data flows through these tasks in many forms, such as one-to-one, one-to-many, many-to-one, and/or, many-to-many. 
+Many group based operations (such as aggregation, join, sort, etc.) usually require many-to-many data exchanges referred to as “data shuffle.”
+----------------------------------------------
+This data shuffle operation is paramount to the overall batch system's performance, fault tolerance, and scalability characteristics.
+
+
+
+Reference: https://patents.justia.com/patent/11132221
