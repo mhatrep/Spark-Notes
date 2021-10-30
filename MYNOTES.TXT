@@ -5,6 +5,18 @@ Intermediary data flows through these tasks in many forms, such as one-to-one, o
 Many group based operations (such as aggregation, join, sort, etc.) usually require many-to-many data exchanges referred to as “data shuffle.”
 ----------------------------------------------
 This data shuffle operation is paramount to the overall batch system's performance, fault tolerance, and scalability characteristics.
+The data shuffle phase is network intensive.
+intermediary data is usually saved on disk before being sent. Although disk drives can usually operate at 80 MB/sec of sequential concurrent reads and writes, this throughput dramatically decreases when the number of accessed files increases.
+Spill files are files that are created on disk if there is not sufficient memory to execute a command (such as query) in memory.
+
+An inefficient data exchange impacts the overall runtime of small and large jobs. For both types of jobs data is always spilled to disk and large and smaller jobs can be executed in parallel. For this reason, optimizers try to filter out as much intermediary data or eliminate data shuffle altogether (e.g., Map side Join).
+MapReduce save mappers data on local disk and then on HDFS (reducer output). This guarantees fault tolerance and provides linear scalability. However, its performance is degraded by the excessive use of disk IO and the requirement to publish each MapReduce result to HDFS.
+
+
+Every map task writes out data to local disk, and then the reduce tasks make remote requests to fetch that data. Originally, the total number of files created was M×R, where M is total number of producers (mappers) and R is total number of consumers (reducers). Shuffle consolidation improvements were able to decrease this number to C×R, where C is the maximum number of concurrent producers. Even with this change, users often run into the “too many open files” limit when running jobs with non-trivial numbers of reducers.
+
+***  Spark originally utilized only a “hash” based shuffle unlike the “sort” based shuffle of Map-Reduce. This Data Shuffle suffers from costly Java Virtual Machine (JVM) costly garbage collection.
+
 
 
 
