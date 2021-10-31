@@ -18,6 +18,8 @@ Every map task writes out data to local disk, and then the reduce tasks make rem
 ***  Spark originally utilized only a “hash” based shuffle unlike the “sort” based shuffle of Map-Reduce. This Data Shuffle suffers from costly Java Virtual Machine (JVM) costly garbage collection.
 
 
-
+ A daemon is a computer program that runs as a background process, rather than being under the direct control of an interactive user.
+ 
+ 
 
 Reference: https://patents.justia.com/patent/11132221
